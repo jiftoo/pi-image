@@ -1,0 +1,23 @@
+#app {
+	text-align: center;
+}
+
+#controls {
+	display: inline-block;
+}
+#controls > div {
+    width: 1000px;
+}
+#controls input {
+	width: 40px;
+}
+#controls span {
+	margin: 0 10px 0 10px;
+    align-self: center;
+    font-size: 18px;
+    font-family: monospace;
+}
+
+#canvas {
+	display: inline-grid;
+}
