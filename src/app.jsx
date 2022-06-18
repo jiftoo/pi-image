@@ -1,4 +1,4 @@
-import {useEffect, useState} from "preact/hooks";
+import {useEffect, useState, useReducer} from "preact/hooks";
 import OffsetSelector from "./offset-selector";
 import PiCanvas from "./picanvas";
 
@@ -8,7 +8,7 @@ export function App() {
 	const [offset, setOffset] = useState(0);
 	const [digits, setDigits] = useState([]);
 	const [isFetching, setIsFetching] = useState(false);
-	const [dummy, setDummy] = useState(false);
+	const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
 	useEffect(() => {
 		(async () => {
@@ -33,15 +33,12 @@ export function App() {
 			{localStorage.getItem("__pi_readnotice") !== "true" && (
 				<footer>
 					* each digit contributes to 4 pixels on the image{" "}
-					<a href="#" onClick={() => (localStorage.setItem("__pi_readnotice", "true"), setDummy(true))}>
+					<a href="#" onClick={() => (localStorage.setItem("__pi_readnotice", "true"), forceUpdate())}>
 						hide
 					</a>
 				</footer>
 			)}
 			<PiCanvas digits={digits} size={CANVAS_SIZE} cellSize={6} isFetching={isFetching} />
-
-			<br />
-			<br />
 			<br />
 			<OffsetSelector onChangeOffset={(v) => setOffset(Math.max(v, 0))} pageSize={CANVAS_SIZE} offset={offset} />
 			<br />

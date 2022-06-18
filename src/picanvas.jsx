@@ -1,6 +1,6 @@
 export default function PiCanvas({digits, size, cellSize, isFetching}) {
 	const css = `repeat(${size}, ${cellSize}px)`;
-    digits = digits.slice(0, size*size);
+	digits = digits.slice(0, size * size);
 	return (
 		<div id="canvas" style={{gridTemplateColumns: css, gridTemplateRows: css, opacity: isFetching ? 0.6 : 1}}>
 			{digits.map((v, i) => {

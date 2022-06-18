@@ -1,14 +1,15 @@
 import {useState, useEffect} from "preact/hooks";
 
 export default function OffsetSelector({pageSize, offset, onChangeOffset}) {
-	const [offsetBy, setOffsetBy] = useState(1);
+	const [offsetBy, setOffsetBy] = useState("");
 	const [jumpToOffset, setJumpToOffset] = useState(1);
+    const ofs = offsetBy === "" ? 1 : +offsetBy;
 
 	const move = () => {
-		onChangeOffset(+offsetBy + +offset);
+		onChangeOffset(ofs + +offset);
 	};
 	const moveBack = () => {
-		onChangeOffset(-offsetBy + +offset);
+		onChangeOffset(-ofs + +offset);
 	};
 	const movePageBack = () => {
 		onChangeOffset(+offset - pageSize);
@@ -33,7 +34,7 @@ export default function OffsetSelector({pageSize, offset, onChangeOffset}) {
 				<button onClick={movePageBack}>{"< Previous page"}</button>
 				<button onClick={moveBack}>{"< Left"}</button>
 				<span>{+offset + 1}</span>
-				<input type="text" value={offsetBy} onInput={getFieldHandler(setOffsetBy)} />
+				<input placeholder="increment" type="text" value={offsetBy} onInput={getFieldHandler(setOffsetBy)} />
 				<button onClick={move}>{"Right >"}</button>
 				<button onClick={movePage}>{"Next page >"}</button>
 			</div>

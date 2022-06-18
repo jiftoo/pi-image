@@ -3,13 +3,15 @@
 }
 
 #controls {
+    margin-top: 8px;
+    text-align: center;
 	display: inline-block;
 }
 #controls > div {
     width: 1000px;
 }
 #controls input {
-	width: 40px;
+	width: 60px;
 }
 #controls span {
 	margin: 0 10px 0 10px;
